@@ -12,7 +12,6 @@ export default {
   props: ["server"], // this is received from 'server:="server" in Servers.vue
   methods: {
     serverSelected() {
-      // here this.id refers to the id in our props
       serverBus.$emit("serverSelected", this.server);
     }
   }
