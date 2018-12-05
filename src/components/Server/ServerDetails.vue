@@ -1,7 +1,12 @@
 <template>
   <div class="col-xs-12 col-sm-6">
     <p v-if="!server">Please select a server</p>
-    <p v-else>Server {{ server.id }} is {{ server.status }}</p>
+    <div v-else>
+      <p>Server {{ server.id }} is {{ server.status }}</p>
+      <hr>
+      <button class="btn btn-sm btn-success" @click="setNormal()">Set Normal</button>
+      <button class="btn btn-sm btn-danger" @click="setCritical()">Set Critical</button>
+    </div>
   </div>
 </template>
 
@@ -17,6 +22,14 @@ export default {
     serverBus.$on("serverSelected", server => {
       this.server = server;
     });
+  },
+  methods: {
+    setNormal() {
+      this.server.status = "Normal";
+    },
+    setCritical() {
+      this.server.status = "Critical";
+    }
   }
 };
 </script>
